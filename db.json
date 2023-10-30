@@ -1,0 +1,36 @@
+{
+  "albums": [
+    {
+      "id": 1,
+      "name": "Album 1",
+      "price": 15.99,
+      "singers": ["Singer A", "Singer B"],
+      "thumbnail": "https://via.placeholder.com/150",
+      "isReleased": true
+    },
+    {
+      "id": 2,
+      "name": "Album 2",
+      "price": 12.99,
+      "singers": ["Singer C"],
+      "thumbnail": "https://via.placeholder.com/150",
+      "isReleased": true
+    },
+    {
+      "id": 3,
+      "name": "Album 3",
+      "price": 19.99,
+      "singers": ["Singer D", "Singer E", "Singer F"],
+      "thumbnail": "https://via.placeholder.com/150",
+      "isReleased": false
+    },
+    {
+      "id": 4,
+      "name": "Album 4",
+      "price": 9.99,
+      "singers": ["Singer G"],
+      "thumbnail": "https://via.placeholder.com/150",
+      "isReleased": true
+    }
+  ]
+}

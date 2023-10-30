@@ -8,8 +8,25 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AlbumsService {
   constructor(private _http: HttpClient) {}
-
   private albums:  BehaviorSubject<Album[]> = new BehaviorSubject<Album[]>([]);
-
   albums$ = this.albums.asObservable();
+
+  getAlbums(){
+    this._http.get<Album[]>("http://localhost:3000/albums").subscribe((response)=>{
+      this.albums.next(response);
+    })
+  }
+
+  addAlbum(){
+
+  }
+
+  deleteAlbum(){
+
+  }
+
+  updateAlbum(){
+
+  }
 }
+
