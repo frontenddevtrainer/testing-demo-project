@@ -5,11 +5,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { AlbumListingComponent } from './components/album-listing/album-listing.component';
 import { MainBannerComponent } from './components/main-banner/main-banner.component';
 import { AlbumCardComponent } from './components/album-card/album-card.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, HttpClientTestingModule],
       declarations: [
         AppComponent,
         HeaderComponent,

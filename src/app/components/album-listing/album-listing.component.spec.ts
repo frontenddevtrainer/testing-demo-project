@@ -5,16 +5,17 @@ import { AlbumCardComponent } from '../album-card/album-card.component';
 import { AlbumsService } from 'src/app/services/albums.service';
 import { By } from '@angular/platform-browser';
 import { Album } from 'src/app/interfaces/Albums';
+import { Observable, of } from 'rxjs';
 
 class MockAlbumService {
-  albums : Partial<Album>[] = [
+  albums$: Observable<Partial<Album>[]> = of([
     {
-      name: "Album 1"
+      name: 'Album 1',
     },
     {
-      name: "Album 2"
-    }
-  ]
+      name: 'Album 2',
+    },
+  ]);
 }
 
 describe('AlbumListingComponent', () => {
@@ -24,10 +25,12 @@ describe('AlbumListingComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AlbumListingComponent, AlbumCardComponent],
-      providers: [{
-        provide: AlbumsService,
-        useClass: MockAlbumService
-      }]
+      providers: [
+        {
+          provide: AlbumsService,
+          useClass: MockAlbumService,
+        },
+      ],
     });
 
     fixture = TestBed.createComponent(AlbumListingComponent);

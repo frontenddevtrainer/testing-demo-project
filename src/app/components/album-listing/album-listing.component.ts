@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Album } from 'src/app/interfaces/Albums';
 import { AlbumsService } from 'src/app/services/albums.service';
 
@@ -12,5 +13,5 @@ export class AlbumListingComponent {
   constructor(private _albums: AlbumsService) {}
 
   @Input() heading!: string;
-  @Input() albums: Album[] = this._albums.albums;
+  @Input() albums$: Observable<Album[]> = this._albums.albums$;
 }
