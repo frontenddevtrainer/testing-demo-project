@@ -1,0 +1,46 @@
+<!-- Album Card -->
+<div class="bg-gray-800 p-4 rounded relative">
+  <!-- Image and Play Button -->
+  <div class="relative">
+    <img [src]="album.thumbnail" alt="Album" class="w-full rounded mb-2" />
+    <button
+      *ngIf="album.isReleased"
+      class="absolute bottom-2 right-2 bg-green-400 w-10 h-10 rounded-full flex items-center justify-center hover:bg-green-300"
+    >
+      <span class="material-icons text-white"> play_arrow </span>
+    </button>
+  </div>
+
+  <!-- Album Details -->
+  <div class="text-left">
+    <h3 class="text-md font-bold mb-1">{{ album.name }}</h3>
+    <p
+      data-testid="singers"
+      *ngIf="album.singers && album.singers.length > 0"
+      class="text-sm mb-2 text-gray-400"
+    >
+      By {{ album.singers.join(", ") }}
+    </p>
+    <p data-testid="price" class="text-sm mb-2 text-green-200">
+      {{ album.price | currency }}
+    </p>
+
+    <a
+      data-testid="add-to-cart"
+      *ngIf="album.isReleased"
+      href="#"
+      class="inline-flex items-center text-green-400 hover:text-green-300"
+    >
+      <span class="material-icons"> shopping_cart </span>
+      <span class="ml-1">Add to Cart</span>
+    </a>
+
+    <p
+      data-testid="to-be-released"
+      *ngIf="!album.isReleased"
+      class="text-green-400"
+    >
+      To be released
+    </p>
+  </div>
+</div>
