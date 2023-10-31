@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomepageScreenComponent } from './screens/homepage-screen/homepage-screen.component';
 import { AlbumsScreenComponent } from './screens/albums-screen/albums-screen.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: HomepageScreenComponent,

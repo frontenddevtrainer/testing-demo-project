@@ -14,7 +14,7 @@
   <!-- Album Details -->
   <div class="text-left">
     <h3 class="text-md font-bold mb-1">
-      <a routerLink="/albums/{{album.id}}">{{ album.name }}</a>
+      <a data-testid="title" routerLink="/albums/{{album.id}}">{{ album.name }}</a>
     </h3>
     <p
       data-testid="singers"

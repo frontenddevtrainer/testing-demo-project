@@ -1,9 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { AlbumCardComponent } from './album-card.component';
 import { Album } from 'src/app/interfaces/Albums';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, Location } from '@angular/common';
 import { DEFAULT_CURRENCY_CODE } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
+import { routes } from 'src/app/app-routing.module';
+import { Router } from '@angular/router';
 
 const MockAlbum: Album = {
   name: 'Music Album',
@@ -17,11 +19,13 @@ const MockAlbum: Album = {
 describe('AlbumCardComponent', () => {
   let component: AlbumCardComponent;
   let fixture: ComponentFixture<AlbumCardComponent>;
+  let location: Location;
+  let router: Router;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AlbumCardComponent],
-      imports:[RouterTestingModule],
+      imports: [RouterTestingModule.withRoutes(routes)],
       providers: [
         {
           provide: DEFAULT_CURRENCY_CODE,
@@ -29,6 +33,8 @@ describe('AlbumCardComponent', () => {
         },
       ],
     });
+    location = TestBed.inject(Location);
+    router = TestBed.inject(Router);
     fixture = TestBed.createComponent(AlbumCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -78,4 +84,21 @@ describe('AlbumCardComponent', () => {
     );
     expect(addToCard).toBeTruthy();
   });
+
+  it('should verify page navigation', fakeAsync(() => {
+    component.album = MockAlbum;
+    fixture.detectChanges();
+
+    router.initialNavigation();
+    tick();
+    
+
+    const title = fixture.nativeElement.querySelector('[data-testid=title]');
+    title.click();
+    
+    tick();
+    fixture.detectChanges();
+
+    expect(location.path()).toBe(`/albums/${MockAlbum.id}`);
+  }));
 });
