@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "coverage": "ng test --no-watch --code-coverage",
     "test": "ng test",
-    "mock:server": "json-server db.json --watch"
+    "mock:server": "json-server db.json --watch",
+    "e2e": "cypress open"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +30,7 @@
     "@angular/cli": "~16.2.2",
     "@angular/compiler-cli": "^16.2.0",
     "@types/jasmine": "~4.3.0",
+    "cypress": "^13.3.3",
     "jasmine-core": "~4.6.0",
     "json-server": "^0.17.4",
     "karma": "~6.4.0",

@@ -8,6 +8,7 @@ import { Album } from 'src/app/interfaces/Albums';
 import { Observable, of } from 'rxjs';
 
 class MockAlbumService {
+  getAlbums(){}
   albums$: Observable<Partial<Album>[]> = of([
     {
       name: 'Album 1',
