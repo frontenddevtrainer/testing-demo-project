@@ -11,6 +11,8 @@ import { AlbumListingComponent } from './components/album-listing/album-listing.
 import { AlbumCardComponent } from './components/album-card/album-card.component';
 import { HomepageScreenComponent } from './screens/homepage-screen/homepage-screen.component';
 import { AlbumsScreenComponent } from './screens/albums-screen/albums-screen.component';
+import { LoginScreenComponent } from './screens/login-screen/login-screen.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,12 +22,14 @@ import { AlbumsScreenComponent } from './screens/albums-screen/albums-screen.com
     AlbumListingComponent,
     AlbumCardComponent,
     HomepageScreenComponent,
-    AlbumsScreenComponent
+    AlbumsScreenComponent,
+    LoginScreenComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
