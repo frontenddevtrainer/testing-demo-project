@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginScreenComponent } from './login-screen.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 describe('LoginScreenComponent', () => {
   let component: LoginScreenComponent;
@@ -43,5 +44,25 @@ describe('LoginScreenComponent', () => {
     fixture.detectChanges();
 
     expect(component.loginUser).toHaveBeenCalled();
+  });
+
+  it('should update email', () => {
+    const email = 'abc@example.com';
+    const password = 'password123!';
+    const emailControl = fixture.debugElement.query(By.css('input[name=email]'))
+      .nativeElement as HTMLInputElement;
+
+    const passwordControl = fixture.debugElement.query(
+      By.css('input[name=password]')
+    ).nativeElement as HTMLInputElement;
+
+    emailControl.value = email;
+    emailControl.dispatchEvent(new Event('input'));
+
+    passwordControl.value = password;
+    passwordControl.dispatchEvent(new Event('input'));
+
+    expect(component.loginForm.get('email')?.value).toBe(email);
+    expect(component.loginForm.get('password')?.value).toBe(password);
   });
 });
