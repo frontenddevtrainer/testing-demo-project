@@ -9,6 +9,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { MainBannerComponent } from './components/main-banner/main-banner.component';
 import { AlbumListingComponent } from './components/album-listing/album-listing.component';
 import { AlbumCardComponent } from './components/album-card/album-card.component';
+import { HomepageScreenComponent } from './screens/homepage-screen/homepage-screen.component';
+import { AlbumsScreenComponent } from './screens/albums-screen/albums-screen.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { AlbumCardComponent } from './components/album-card/album-card.component
     HeaderComponent,
     MainBannerComponent,
     AlbumListingComponent,
-    AlbumCardComponent
+    AlbumCardComponent,
+    HomepageScreenComponent,
+    AlbumsScreenComponent
   ],
   imports: [
     BrowserModule,

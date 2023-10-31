@@ -3,6 +3,7 @@ import { AlbumCardComponent } from './album-card.component';
 import { Album } from 'src/app/interfaces/Albums';
 import { CurrencyPipe } from '@angular/common';
 import { DEFAULT_CURRENCY_CODE } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const MockAlbum: Album = {
   name: 'Music Album',
@@ -10,6 +11,7 @@ const MockAlbum: Album = {
   singers: ['Singer 1', 'Singer 2', 'Singer A'],
   isReleased: true,
   thumbnail: 'https://via.placeholder.com/150',
+  id: 1,
 };
 
 describe('AlbumCardComponent', () => {
@@ -19,12 +21,13 @@ describe('AlbumCardComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AlbumCardComponent],
+      imports:[RouterTestingModule],
       providers: [
         {
           provide: DEFAULT_CURRENCY_CODE,
-          useValue: "INR"
-        }
-      ]
+          useValue: 'INR',
+        },
+      ],
     });
     fixture = TestBed.createComponent(AlbumCardComponent);
     component = fixture.componentInstance;
@@ -55,23 +58,24 @@ describe('AlbumCardComponent', () => {
     );
   });
 
-  it("should show to be release for upcoming album", ()=>{
-      const upcomingAlbum = { ...MockAlbum, isReleased: false }
-      component.album = upcomingAlbum;
-      fixture.detectChanges();
+  it('should show to be release for upcoming album', () => {
+    const upcomingAlbum = { ...MockAlbum, isReleased: false };
+    component.album = upcomingAlbum;
+    fixture.detectChanges();
 
-      const toBeReleasedText = fixture.nativeElement.querySelector("[data-testid=to-be-released]");
-      expect(toBeReleasedText).toBeTruthy();
-  })
+    const toBeReleasedText = fixture.nativeElement.querySelector(
+      '[data-testid=to-be-released]'
+    );
+    expect(toBeReleasedText).toBeTruthy();
+  });
 
-  it("should show add to card for released album", ()=>{
+  it('should show add to card for released album', () => {
     component.album = MockAlbum;
     fixture.detectChanges();
 
-    const addToCard = fixture.nativeElement.querySelector("[data-testid=add-to-cart]");
+    const addToCard = fixture.nativeElement.querySelector(
+      '[data-testid=add-to-cart]'
+    );
     expect(addToCard).toBeTruthy();
-})
-
-
-
+  });
 });

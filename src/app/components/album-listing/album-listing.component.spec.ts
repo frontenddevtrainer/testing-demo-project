@@ -6,6 +6,8 @@ import { AlbumsService } from 'src/app/services/albums.service';
 import { By } from '@angular/platform-browser';
 import { Album } from 'src/app/interfaces/Albums';
 import { Observable, of } from 'rxjs';
+import { verifyHeadingisShown } from './album-listing.component.util';
+import { RouterTestingModule } from '@angular/router/testing';
 
 class MockAlbumService {
   getAlbums(){}
@@ -26,6 +28,9 @@ describe('AlbumListingComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AlbumListingComponent, AlbumCardComponent],
+      imports: [
+        RouterTestingModule
+      ],
       providers: [
         {
           provide: AlbumsService,
@@ -41,6 +46,7 @@ describe('AlbumListingComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    verifyHeadingisShown(component, fixture, "Top Album");
   });
 
   it('should have heading', () => {
@@ -53,11 +59,13 @@ describe('AlbumListingComponent', () => {
     component.heading = 'Top Albums';
     fixture.detectChanges();
     const heading = fixture.nativeElement.querySelector('h2');
+    verifyHeadingisShown(component, fixture, "Top Albums");
     expect(heading).toBeTruthy();
     expect(heading.textContent).toBe('Top Albums');
   });
 
   it('should show 2 card based on the service data', () => {
+    verifyHeadingisShown(component, fixture, "Top Albums");
     const cards = fixture.debugElement.queryAll(
       By.directive(AlbumCardComponent)
     );

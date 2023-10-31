@@ -3,5 +3,6 @@ export interface Album {
   price: number;
   singers: string[];
   thumbnail: string;
-  isReleased: boolean
+  isReleased: boolean,
+  id: number
 }
