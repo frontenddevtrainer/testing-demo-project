@@ -65,4 +65,31 @@ describe('LoginScreenComponent', () => {
     expect(component.loginForm.get('email')?.value).toBe(email);
     expect(component.loginForm.get('password')?.value).toBe(password);
   });
+
+  it('should update email throws error', () => {
+    const email = 'abc';
+    const emailControl = component.loginForm.get('email');
+    emailControl?.setValue(email);
+    emailControl?.markAsTouched();
+
+    fixture.detectChanges();
+
+    expect(emailControl?.hasError('required')).toBeFalse();
+    expect(emailControl?.hasError('email')).toBeTrue();
+  });
+
+
+  it('should update password throws error', () => {
+    const password = 'pass';
+    const passwordControl = component.loginForm.get('password');
+    passwordControl?.setValue(password);
+    passwordControl?.markAsTouched();
+
+    fixture.detectChanges();
+
+    expect(passwordControl?.hasError('required')).toBeFalse();
+    expect(passwordControl?.hasError('minlength')).toBeTrue();
+  });
+
+
 });
