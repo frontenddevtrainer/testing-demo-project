@@ -18,5 +18,7 @@ export class LoginScreenComponent implements OnInit {
     });
   }
 
-  loginUser() {}
+  loginUser() {
+    console.log(this.loginForm.value)
+  }
 }

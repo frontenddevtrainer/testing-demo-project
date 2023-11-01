@@ -7,6 +7,19 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from 'src/app/app-routing.module';
 import { Router } from '@angular/router';
 
+
+function message(text: string){
+  const timestamp = new Date().toISOString();
+  // TIMESTAMP: MESSAGE
+  console.log(`${timestamp}: ${ text.length > 100 ? text : `Text to short
+  
+  this is some demo content added in 
+
+  multiline string
+  
+  its only ${text.length}` }`)
+}
+
 const MockAlbum: Album = {
   name: 'Music Album',
   price: 12.99,
