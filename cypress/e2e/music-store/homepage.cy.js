@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import HeaderPageObject from "../../pageobjects/header";
 
 describe("Testing homepage.", () => {
   beforeEach(() => {
@@ -6,11 +7,25 @@ describe("Testing homepage.", () => {
   });
 
   it("should show heading as Music Store", () => {
-    cy.get("app-header .text-2xl").should("have.text", "Music Store");
+    HeaderPageObject.findTitle().should("have.text", "Music Store");
   });
 
+  it("should have drop down for profile", () => {
+    HeaderPageObject.findProfileDropDown().should("exist");
+  });
 
-  it("should have drop down for profile", ()=>{
-    cy.get('[data-testid="profile-dropdown"]').should("exist");
+  it("should click profile and verify menu is open", ()=>{
+
+    HeaderPageObject.findMenuLinks().should("not.exist");
+
+    HeaderPageObject.findMenuArrow().contains("arrow_drop_down")
+
+    HeaderPageObject.findProfileDropDownButton().click();
+
+    HeaderPageObject.findMenuArrow().contains("arrow_drop_up")
+
+    HeaderPageObject.findMenuLinks().should("exist");
+
   })
+
 });
