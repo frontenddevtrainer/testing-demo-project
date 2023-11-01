@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginScreenComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private _fb: FormBuilder) {}
+  constructor(private _fb: FormBuilder, private _http: HttpClient) {}
 
   ngOnInit(): void {
     this.loginForm = this._fb.group({
@@ -19,6 +20,8 @@ export class LoginScreenComponent implements OnInit {
   }
 
   loginUser() {
-    console.log(this.loginForm.value)
+    this._http
+      .post('http://localhost:3000/login', this.loginForm.value)
+      .subscribe();
   }
 }
