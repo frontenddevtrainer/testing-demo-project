@@ -57,11 +57,14 @@ describe("Testing homepage.", () => {
     cy.wait("@getAlbums");
     const cards = new AlbumCardPageObject(".grid");
     const firstCard = cards.findCardByIndex(0);
+    const title = firstCard.find("[data-testid=title]");
     firstCard.should("exist");
-    firstCard
-      .find("[data-testid=title]")
-      .should("exist")
-      .should("have.text", "Album 1");
+
+    title.should("exist").should("have.text", "Album 1");
+
+    title.click();
+
+    cy.url().should("include", "/albums/1");
 
     // Price
     // firstCard
